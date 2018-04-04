@@ -18,18 +18,25 @@
                 var colorArray = [];
                 $("#gamearea").hide();
                 $("#start").click(startGame);
+                $("#output").on("click",".cell",checkCell);
+                $("body").css({
+                    backgroundColor:"#D4F9F9",
+                    fontFamily: 'IBM Plex Mono',
+                    textAlign:"center"
+                })
                 $("#start").css({
-                    border: "1px solid black",
+                    border: "2px solid black",
                     textAlign:"center",
                     padding:"10px",
                     width:"150px",
                     backgroundColor: "#C9C3E5",
                     fontSize:"2em",
                     marginBottom:"10px",
-                    color: "white"
+                    color: "white",
+                    display:"inline-block"   
                 })
                 $("#findme").css({
-                    border: "1px solid black",
+                    border: "2px solid black",
                     textAlign:"center",
                     padding:"0",
                     width:"400px",                    
@@ -37,11 +44,10 @@
                     height:"50px",
                     display:"inline-block"                    
                 })
-                $("body").css({
-                    backgroundColor:"#D4F9F9",
-                    fontFamily: 'IBM Plex Mono',
 
-                })
+                function checkCell(){
+                    var curColor = $(this).css("backgroundColor");
+                }
 
                 function startGame(){
                     makeBoard();
@@ -76,6 +82,9 @@
                     })
                 }
                 function pickMyColor(){
+                    var index = Math.floor(Math.random()*colorArray.length);
+                    var picked = colorArray.splice(index,1);
+                    $("#findme").css("background-color", picked);
 
                 }
                 function randomColor(){
