@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>jQuery Course</title>
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
     </head>
     <body>
         <h1>Welcome</h1>
@@ -14,6 +15,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
+                var colorArray = [];
                 $("#gamearea").hide();
                 $("#start").click(startGame);
                 $("#start").css({
@@ -21,7 +23,7 @@
                     textAlign:"center",
                     padding:"10px",
                     width:"150px",
-                    backgroundColor: "red",
+                    backgroundColor: "#C9C3E5",
                     fontSize:"2em",
                     marginBottom:"10px",
                     color: "white"
@@ -34,6 +36,11 @@
                     fontSize:"2em",
                     height:"50px",
                     display:"inline-block"                    
+                })
+                $("body").css({
+                    backgroundColor:"#D4F9F9",
+                    fontFamily: 'IBM Plex Mono',
+
                 })
 
                 function startGame(){
@@ -49,18 +56,20 @@
                     for(var row = 0 ; row < x; row++){
                         html += '<div class="row">';
                         for(var col = 0; col < x; col++){
-                            html += '<div class="cell">0</div>';
+                            var trackColor = randomColor();
+                            colorArray.push(trackColor);
+                            html += '<div class="cell" style="background-color:'+trackColor+'">0</div>';
                         }
                         html += '</div>';
                     }
                     $("#output").html(html);
                     $(".cell").css({
-                    border: "1px solid black",
+                    border: "1px solid white",
                     textAlign:"center",
                     padding:"0",
-                    margin:"0",
+                    margin:"0.5px",
                     width:"100px",
-                    height:"100px",                    
+                    height:"100px",                                       
                     fontSize:"2em",
                     color: "black",
                     display:"inline-block"
@@ -69,8 +78,10 @@
                 function pickMyColor(){
 
                 }
+                function randomColor(){
+                    return "#" + ((1<<24)*Math.random() | 0).toString(16);
 
-
+                }
             })
 
             
